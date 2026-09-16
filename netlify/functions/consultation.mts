@@ -21,7 +21,10 @@ export default async (request: Request, _context: Context) => {
   const projectUrl = Netlify.env.get('SUPABASE_URL');
   const publishableKey = Netlify.env.get('SUPABASE_PUBLISHABLE_KEY');
   const formKey = Netlify.env.get('SITESYNC_FORM_KEY');
-  if (!projectUrl || !publishableKey || !formKey) return json(503, { ok: false, error: 'Consultation delivery is temporarily unavailable.' }, { 'X-SiteSync-Error': 'configuration' });
+  if (!projectUrl || !publishableKey || !formKey) {
+    const missing = [!projectUrl && 'url', !publishableKey && 'publishable-key', !formKey && 'form-key'].filter(Boolean).join(',');
+    return json(503, { ok: false, error: 'Consultation delivery is temporarily unavailable.' }, { 'X-SiteSync-Error': `configuration:${missing}` });
+  }
 
   const response = await fetch(`${projectUrl}/rest/v1/consultation_requests`, {
     method: 'POST',
