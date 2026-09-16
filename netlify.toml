@@ -7,6 +7,12 @@
   NODE_VERSION = "22"
 
 [[redirects]]
+  from = "https://www.sitesync.us.com/*"
+  to = "https://sitesync.us.com/:splat"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/api/consultation"
   to = "/.netlify/functions/consultation"
   status = 200
