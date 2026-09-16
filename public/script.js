@@ -378,6 +378,44 @@ if (form) {
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+const progressBar = document.querySelector('.scroll-progress span');
+let scrollFrame = 0;
+function updatePageMotion() {
+  scrollFrame = 0;
+  const scrollable = document.documentElement.scrollHeight - window.innerHeight;
+  const progress = scrollable > 0 ? Math.min(window.scrollY / scrollable, 1) : 0;
+  if (progressBar) progressBar.style.transform = `scaleX(${progress})`;
+  document.documentElement.style.setProperty('--page-progress', progress.toFixed(3));
+  document.documentElement.style.setProperty('--ambient-x', `${16 + (progress * 28)}%`);
+}
+function requestPageMotion() {
+  if (!scrollFrame) scrollFrame = window.requestAnimationFrame(updatePageMotion);
+}
+window.addEventListener('scroll', requestPageMotion, { passive: true });
+window.addEventListener('resize', requestPageMotion);
+updatePageMotion();
+
+const navLinks = [...document.querySelectorAll('.site-nav a[href^="#"]')];
+if ('IntersectionObserver' in window && navLinks.length) {
+  const navTargets = navLinks
+    .map(link => document.querySelector(link.getAttribute('href')))
+    .filter(Boolean);
+  const navObserver = new IntersectionObserver(entries => {
+    const visible = entries
+      .filter(entry => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    if (!visible) return;
+    navLinks.forEach(link => {
+      const active = link.hash === `#${visible.target.id}`;
+      link.classList.toggle('active', active);
+      if (active) link.setAttribute('aria-current', 'location');
+      else link.removeAttribute('aria-current');
+    });
+  }, { rootMargin: '-28% 0px -58% 0px', threshold: [0, 0.1, 0.35] });
+  navTargets.forEach(target => navObserver.observe(target));
+}
+
 if ('IntersectionObserver' in window && !reducedMotion) {
   const elements = [...document.querySelectorAll('.reveal')];
   const observer = new IntersectionObserver(entries => {
@@ -389,6 +427,11 @@ if ('IntersectionObserver' in window && !reducedMotion) {
     });
   }, { threshold: 0.04 });
   document.documentElement.classList.add('motion-ready');
+  document.querySelectorAll('.service-grid,.platform-grid,.pricing-grid,.process-list,.fit-columns').forEach(group => {
+    [...group.querySelectorAll(':scope > .reveal,:scope > li')].forEach((element, index) => {
+      element.style.setProperty('--reveal-delay', `${Math.min(index * 55, 275)}ms`);
+    });
+  });
   elements.forEach(element => {
     // First-screen content is always visible, even if an animation never starts.
     if (element.getBoundingClientRect().top > window.innerHeight) element.classList.add('pending');
@@ -405,17 +448,35 @@ if ('IntersectionObserver' in window && !reducedMotion) {
   window.setTimeout(() => elements.forEach(element => element.classList.remove('pending')), 6000);
 }
 if (!reducedMotion && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-  document.querySelectorAll('.service-card').forEach(card => {
+  let pointerFrame = 0;
+  window.addEventListener('pointermove', event => {
+    if (pointerFrame) return;
+    pointerFrame = window.requestAnimationFrame(() => {
+      document.documentElement.style.setProperty('--mouse-x', `${event.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${event.clientY}px`);
+      pointerFrame = 0;
+    });
+  }, { passive: true });
+
+  document.querySelectorAll('.network-card,.service-card,.price-card,.platform-chip,.demo-lab,.concept-stage').forEach(card => {
     let scheduled = false;
     card.addEventListener('pointermove', event => {
       if (scheduled) return;
       scheduled = true;
       window.requestAnimationFrame(() => {
         const rect = card.getBoundingClientRect();
-        card.style.setProperty('--pointer-x', `${event.clientX - rect.left}px`);
-        card.style.setProperty('--pointer-y', `${event.clientY - rect.top}px`);
+        const x = event.clientX - rect.left;
+        const y = event.clientY - rect.top;
+        card.style.setProperty('--pointer-x', `${x}px`);
+        card.style.setProperty('--pointer-y', `${y}px`);
+        card.style.setProperty('--tilt-x', `${((rect.height / 2 - y) / rect.height) * 4}deg`);
+        card.style.setProperty('--tilt-y', `${((x - rect.width / 2) / rect.width) * 4}deg`);
         scheduled = false;
       });
+    });
+    card.addEventListener('pointerleave', () => {
+      card.style.setProperty('--tilt-x', '0deg');
+      card.style.setProperty('--tilt-y', '0deg');
     });
   });
 }
