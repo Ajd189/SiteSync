@@ -1,0 +1,21 @@
+{
+  "name": "sitesync",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "node scripts/build-netlify.mjs",
+    "build:sites": "node scripts/build.mjs",
+    "test": "npm run build && node --test tests/netlify-consultation.test.mjs",
+    "check": "npm test"
+  },
+  "devDependencies": {
+    "@netlify/functions": "^4.2.5",
+    "drizzle-kit": "^0.31.10",
+    "vite": "8.0.13"
+  },
+  "dependencies": {
+    "drizzle-orm": "^0.45.2"
+  }
+}

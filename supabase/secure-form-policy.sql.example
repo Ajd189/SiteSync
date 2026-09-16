@@ -1,0 +1,41 @@
+-- Provision this once with FORM_SECRET_SHA256 replaced by the SHA-256 hash of
+-- a randomly generated form secret. Never commit the original secret.
+create schema if not exists private;
+revoke all on schema private from public;
+
+create table if not exists private.form_secrets (
+  name text primary key,
+  secret_hash text not null
+);
+revoke all on private.form_secrets from public, anon, authenticated;
+insert into private.form_secrets (name, secret_hash)
+values ('sitesync', 'FORM_SECRET_SHA256')
+on conflict (name) do update set secret_hash = excluded.secret_hash;
+
+create or replace function private.valid_sitesync_form_key(candidate text)
+returns boolean
+language sql
+stable
+security definer
+set search_path = private, extensions, pg_temp
+as $$
+  select exists (
+    select 1 from private.form_secrets
+    where name = 'sitesync'
+      and secret_hash = encode(extensions.digest(candidate::text, 'sha256'::text), 'hex')
+  );
+$$;
+revoke all on function private.valid_sitesync_form_key(text) from public;
+grant usage on schema private to anon;
+grant execute on function private.valid_sitesync_form_key(text) to anon;
+grant insert on public.consultation_requests to anon;
+
+create policy "server form may insert consultations"
+on public.consultation_requests
+for insert
+to anon
+with check (
+  private.valid_sitesync_form_key(
+    coalesce(current_setting('request.headers', true)::jsonb ->> 'x-sitesync-form-key', '')
+  )
+);
