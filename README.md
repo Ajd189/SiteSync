@@ -32,3 +32,9 @@ Apply `supabase/migrations/202609160001_create_consultation_requests.sql` before
 ## Client starter
 
 The `client-starter/` directory contains the reusable operating checklist and baseline configuration used for new SiteSync clients.
+
+## Agent system
+
+The private lead pipeline and draft-first automation rules are documented in
+[`docs/agent-system.md`](docs/agent-system.md). Apply the agent-pipeline
+migration before enabling the scheduled agents.
