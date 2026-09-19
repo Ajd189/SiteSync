@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "node scripts/build-netlify.mjs",
     "build:sites": "node scripts/build.mjs",
-    "test": "npm run build && node --test tests/netlify-consultation.test.mjs tests/netlify-inbox.test.mjs",
+    "test": "npm run build && node --test tests/netlify-consultation.test.mjs tests/netlify-inbox.test.mjs tests/netlify-lead-digest.test.mjs",
     "check": "npm test"
   },
   "devDependencies": {

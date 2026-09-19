@@ -9,6 +9,7 @@ SiteSync's production website and the reference implementation for future client
 3. Merge to `main` only after `npm run check` passes.
 4. Netlify deploys `main` to production.
 5. Consultation requests are validated by a Netlify Function and stored in Supabase with public access disabled.
+6. A scheduled Netlify Function sends one daily digest through Netlify Forms, then marks those requests as included.
 
 ## Local setup
 
@@ -29,6 +30,14 @@ Copy `.env.example` to `.env` for local function testing. Never commit the Supab
 - `SITESYNC_OWNER_EMAIL` (the only Netlify Identity email allowed to open the private inbox)
 
 Apply `supabase/migrations/202609160001_create_consultation_requests.sql` before enabling the form in production.
+
+## Lead digest
+
+`lead-digest.mts` runs every day at 13:00 UTC and emails one batch containing
+all consultation requests that have not appeared in an earlier digest. The
+destination is configured as a Netlify form notification, so no owner email
+address is committed to the repository. Netlify Forms must be enabled and an
+email notification must be attached to the `sitesync-lead-digest` form.
 
 ## Client starter
 
