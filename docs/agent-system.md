@@ -22,16 +22,18 @@ spend, or contact prospects without owner approval.
 Finds legitimate small businesses anywhere in the United States using public
 sources, starting with contractors/home services, restaurants, salons/retail,
 and professional services. It rotates among regions and states, records
-verifiable need signals and source URLs, prioritizes verified public business
-emails or working contact forms, deduplicates results, and never gathers private
-personal data.
+verifiable need signals and source URLs, and saves only businesses with a
+verified public business email. It deduplicates results and never gathers
+private personal data.
 
 ### Lead Qualifier
 
-Reviews new prospects, assigns a 0–100 fit score and Hot/Warm/Cold rating, and
-recommends the smallest package that fits the documented need. It must use the
-published package scope and keep domain, hosting, email, software,
-subscriptions, ad spend, licenses, and other third-party costs separate.
+Reviews new prospects, first reverifies the saved public business email, then
+assigns a 0–100 fit score and Hot/Warm/Cold rating and recommends the smallest
+package that fits the documented need. A lead without a reverified email is
+disqualified. It must use the published package scope and keep domain, hosting,
+email, software, subscriptions, ad spend, licenses, and other third-party costs
+separate.
 
 ### Consultation Watch
 
@@ -42,7 +44,8 @@ own.
 ### Outreach Drafts
 
 Creates complete, personalized first-contact email drafts for the
-highest-priority qualified prospects. Each draft includes a subject line,
+highest-priority qualified prospects. A draft may be prepared only after the
+saved public business email is reverified. Each draft includes a subject line,
 documented observation, industry-specific mini-assessment, recommended package,
 cost boundary, consultation link, and owner signature. Every factual statement
 must be supported by the saved public source. Drafts are stored in Supabase for
@@ -50,7 +53,8 @@ owner or salesperson review and are never sent automatically.
 
 ### Follow-Up Queue
 
-Builds the daily follow-up list from outbound leads and inbound consultations,
+Builds the daily follow-up list from outbound leads with a reverified public
+business email and inbound consultations with a customer-provided email,
 prioritizing Hot and Warm opportunities. It prepares drafts but never sends
 them.
 
@@ -70,44 +74,43 @@ prospecting is nationwide and has no local-market preference.
   directory.
 - When five qualified prospects are available, aim for at least three states
   and no more than two prospects from one state.
-- Prefer verified public business email addresses or working website contact
-  forms. A public business phone is secondary.
-- In a full batch of five, aim for at least three prospects with a verified
-  business email or working contact form.
+- A verified public business email is mandatory. A phone number or contact form
+  alone does not qualify a business for the outbound pipeline.
+- The email must be visibly published for business contact by the business or a
+  credible current public business source. A publicly listed business-use
+  Gmail, Outlook, or similar address is acceptable.
+- Never guess, infer, generate, purchase, or enrich an email address, and never
+  collect private personal contact data.
 - Open and verify the original source and the business website when one exists;
   never rely only on search snippets.
 - Do not add weak prospects to fill a quota.
-- Never guess or enrich contact information, access data brokers, or collect
-  private personal data.
-- Existing legitimate local prospects remain valid; the nationwide rule governs
-  new prospect discovery.
+- Existing records without a verified email remain preserved for research but
+  must be marked Disqualified and excluded from drafting and follow-up.
 
 ## Outreach email standard
 
 First-contact outreach is a useful mini-assessment, not a brief generic sales
 message. The drafting agent must:
 
-1. Produce a subject line and a polished body of roughly 140–220 words.
-2. Address a verified contact name when available; otherwise use a natural
+1. Reverify the recipient's public business email before drafting.
+2. Produce a subject line and a polished body of roughly 140–220 words.
+3. Address a verified contact name when available; otherwise use a natural
    neutral greeting and never invent a name.
-3. State how SiteSync found the business through the saved public source.
-4. Describe only a documented gap. Qualify observations such as "the Chamber
-   listing does not show a standalone website" instead of making unsupported
-   claims about the business's entire online presence.
-5. Recommend three to five improvements relevant to the industry, such as a
+4. State how SiteSync found the business through the saved public source.
+5. Describe only a documented gap instead of making unsupported claims about
+   the business's entire online presence.
+6. Recommend three to five improvements relevant to the industry, such as a
    mobile menu, appointment path, estimate form, product or vendor directory,
    directions, or lead-capture form.
-6. Explain how those improvements make it easier for customers to act.
-7. Offer no more than the saved recommended package and quote the published
+7. Explain how those improvements make it easier for customers to act.
+8. Offer no more than the saved recommended package and quote the published
    price exactly.
-8. State that SiteSync pricing covers SiteSync's work only. Domain, hosting,
+9. State that SiteSync pricing covers SiteSync's work only. Domain, hosting,
    email hosting, paid apps/plugins, subscriptions, software/platform fees,
    advertising spend, and other third-party costs remain separate.
-9. End with a low-pressure consultation invitation, say that no payment is
-   needed to discuss the project, include `https://sitesync.us.com`, and sign
-   `Austin` / `SiteSync`.
-10. Store the draft even when no public email is on file, but clearly flag that
-    contact limitation for owner review. Never guess or enrich an address.
+10. End with a low-pressure consultation invitation, say that no payment is
+    needed to discuss the project, include `https://sitesync.us.com`, and sign
+    `Austin` / `SiteSync`.
 
 Drafts must avoid scare tactics, guarantees, invented outcomes, excessive
 jargon, generic mass-mail language, and references to scraping, automation, or
