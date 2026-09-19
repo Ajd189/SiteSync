@@ -1,4 +1,7 @@
 'use strict';
+if (window.location.pathname === '/' && /#(?:confirmation_token|recovery_token|invite_token|access_token|email_change_token)=/.test(window.location.hash)) {
+  window.location.replace(`/inbox${window.location.hash}`);
+}
 const header = document.querySelector('.site-header');
 const menuButton = document.querySelector('.menu-button');
 const navigation = document.querySelector('.site-nav');

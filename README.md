@@ -26,6 +26,7 @@ Copy `.env.example` to `.env` for local function testing. Never commit the Supab
 - `SUPABASE_URL`
 - `SUPABASE_PUBLISHABLE_KEY` (Functions scope only)
 - `SITESYNC_FORM_KEY` (secret; Functions/runtime scope only)
+- `SITESYNC_OWNER_EMAIL` (the only Netlify Identity email allowed to open the private inbox)
 
 Apply `supabase/migrations/202609160001_create_consultation_requests.sql` before enabling the form in production.
 
@@ -38,3 +39,12 @@ The `client-starter/` directory contains the reusable operating checklist and ba
 The private lead pipeline and draft-first automation rules are documented in
 [`docs/agent-system.md`](docs/agent-system.md). Apply the agent-pipeline
 migration before enabling the scheduled agents.
+
+## Private inbox
+
+`/inbox` combines outbound prospects, inbound consultation requests, and agent
+run health. Netlify Identity authenticates the owner, and the server function
+checks `SITESYNC_OWNER_EMAIL` before it reads or updates Supabase. Database keys
+and the internal form key are never sent to the browser. Outreach stays
+draft-only: the inbox supports reviewing and copying drafts, not automatic
+sending.

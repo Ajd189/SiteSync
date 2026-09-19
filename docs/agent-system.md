@@ -11,7 +11,9 @@ spend, or contact prospects without owner approval.
 - `sitesync_leads` stores outbound prospects and draft outreach.
 - `consultation_requests` stores inbound website leads and their review state.
 - `sitesync_agent_runs` records agent outcomes for troubleshooting.
-- All three tables are private: `anon` and `authenticated` have no access.
+- All three tables are protected by RLS. Access is limited to the service role
+  and trusted server requests carrying the private SiteSync form key; that key
+  is never exposed to the browser.
 
 ## Agents
 

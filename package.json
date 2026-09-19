@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "node scripts/build-netlify.mjs",
     "build:sites": "node scripts/build.mjs",
-    "test": "npm run build && node --test tests/netlify-consultation.test.mjs",
+    "test": "npm run build && node --test tests/netlify-consultation.test.mjs tests/netlify-inbox.test.mjs",
     "check": "npm test"
   },
   "devDependencies": {
@@ -16,6 +16,7 @@
     "vite": "8.0.13"
   },
   "dependencies": {
+    "@netlify/identity": "2.0.0",
     "drizzle-orm": "^0.45.2"
   }
 }
