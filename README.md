@@ -8,7 +8,7 @@ SiteSync's production website and the reference implementation for future client
 2. Netlify creates a deploy preview for review.
 3. Merge to `main` only after `npm run check` passes.
 4. Netlify deploys `main` to production.
-5. Consultation requests are validated by a Netlify Function and stored in Supabase with public access disabled.
+5. Consultation requests are validated by a Netlify Function, stored in Supabase with public access disabled, and forwarded to the private notification recipient when email delivery is available.
 
 ## Local setup
 
@@ -27,6 +27,7 @@ Copy `.env.example` to `.env` for local function testing. Never commit the Supab
 - `SUPABASE_PUBLISHABLE_KEY` (Functions scope only)
 - `SITESYNC_FORM_KEY` (secret; Functions/runtime scope only)
 - `SITESYNC_OWNER_EMAIL` (the only Netlify Identity email allowed to open the private inbox)
+- `CONSULTATION_RECIPIENT` (private email destination for new-lead notifications)
 
 Apply `supabase/migrations/202609160001_create_consultation_requests.sql` before enabling the form in production.
 
