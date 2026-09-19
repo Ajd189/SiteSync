@@ -39,9 +39,12 @@ own.
 
 ### Outreach Drafts
 
-Creates concise, personalized first-contact drafts for the highest-priority
-qualified prospects. Every factual statement must be supported by the saved
-public source. Drafts are stored in Supabase for owner or salesperson review.
+Creates complete, personalized first-contact email drafts for the
+highest-priority qualified prospects. Each draft includes a subject line,
+documented observation, industry-specific mini-assessment, recommended package,
+cost boundary, consultation link, and owner signature. Every factual statement
+must be supported by the saved public source. Drafts are stored in Supabase for
+owner or salesperson review and are never sent automatically.
 
 ### Follow-Up Queue
 
@@ -55,6 +58,37 @@ Reads the SiteSync GA4 property, Netlify production state, GitHub repository,
 and Supabase funnel counts. It reports actionable traffic or conversion changes
 and alerts on deployment, form, or data-pipeline failures. It does not change
 production, campaigns, or budgets.
+
+## Outreach email standard
+
+First-contact outreach is a useful mini-assessment, not a brief generic sales
+message. The drafting agent must:
+
+1. Produce a subject line and a polished body of roughly 140–220 words.
+2. Address a verified contact name when available; otherwise use a natural
+   neutral greeting and never invent a name.
+3. State how SiteSync found the business through the saved public source.
+4. Describe only a documented gap. Qualify observations such as "the Chamber
+   listing does not show a standalone website" instead of making unsupported
+   claims about the business's entire online presence.
+5. Recommend three to five improvements relevant to the industry, such as a
+   mobile menu, appointment path, estimate form, product or vendor directory,
+   directions, or lead-capture form.
+6. Explain how those improvements make it easier for customers to act.
+7. Offer no more than the saved recommended package and quote the published
+   price exactly.
+8. State that SiteSync pricing covers SiteSync's work only. Domain, hosting,
+   email hosting, paid apps/plugins, subscriptions, software/platform fees,
+   advertising spend, and other third-party costs remain separate.
+9. End with a low-pressure consultation invitation, say that no payment is
+   needed to discuss the project, include `https://sitesync.us.com`, and sign
+   `Austin` / `SiteSync`.
+10. Store the draft even when no public email is on file, but clearly flag that
+    contact limitation for owner review. Never guess or enrich an address.
+
+Drafts must avoid scare tactics, guarantees, invented outcomes, excessive
+jargon, generic mass-mail language, and references to scraping, automation, or
+AI. Preparing a draft does not count as contacting a prospect.
 
 ## Current commercial rules
 
