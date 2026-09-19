@@ -37,9 +37,11 @@ separate.
 
 ### Consultation Watch
 
-Reviews new website consultation requests, sets their priority, prepares a
-response draft, and surfaces new requests to the owner. It never replies on its
-own.
+Reviews new website consultation requests, sets their priority, and prepares an
+email response draft. Email remains the default response even though the
+customer submitted a consultation. A call is recommended only when the customer
+asks for one or agrees by email to a scheduled conversation. The agent never
+replies or calls on its own.
 
 ### Outreach Drafts
 
@@ -53,10 +55,11 @@ owner or salesperson review and are never sent automatically.
 
 ### Follow-Up Queue
 
-Builds the daily follow-up list from outbound leads with a reverified public
-business email and inbound consultations with a customer-provided email,
-prioritizing Hot and Warm opportunities. It prepares drafts but never sends
-them.
+Builds the daily email follow-up list from outbound leads with a reverified
+public business email and inbound consultations with a customer-provided email,
+prioritizing Hot and Warm opportunities. It never creates a cold-call, text, or
+voicemail task. A phone conversation is considered only after documented
+positive interest and must be scheduled or confirmed by email.
 
 ### Growth & Site Health
 
@@ -87,6 +90,21 @@ prospecting is nationwide and has no local-market preference.
 - Existing records without a verified email remain preserved for research but
   must be marked Disqualified and excluded from drafting and follow-up.
 
+## Contact channel gate
+
+SiteSync uses email-only initial outreach.
+
+- Never cold call, cold text, leave a voicemail, or ask Austin to phone an
+  unresponsive prospect.
+- A prospect has shown interest only after a positive email reply, a request for
+  additional information, or agreement to a consultation.
+- An email open, delivery receipt, silence, directory listing, or unanswered
+  message does not demonstrate interest.
+- Any phone conversation must be scheduled or confirmed through email first.
+- For inbound consultation requests, reply by email first and recommend a call
+  only when the customer explicitly requests or agrees to one.
+- No agent may place a call or send a message automatically.
+
 ## Outreach email standard
 
 First-contact outreach is a useful mini-assessment, not a brief generic sales
@@ -108,9 +126,9 @@ message. The drafting agent must:
 9. State that SiteSync pricing covers SiteSync's work only. Domain, hosting,
    email hosting, paid apps/plugins, subscriptions, software/platform fees,
    advertising spend, and other third-party costs remain separate.
-10. End with a low-pressure consultation invitation, say that no payment is
-    needed to discuss the project, include `https://sitesync.us.com`, and sign
-    `Austin` / `SiteSync`.
+10. End with a low-pressure invitation to reply by email or request a
+    consultation, say that no payment is needed to discuss the project, include
+    `https://sitesync.us.com`, and sign `Austin` / `SiteSync`.
 
 Drafts must avoid scare tactics, guarantees, invented outcomes, excessive
 jargon, generic mass-mail language, and references to scraping, automation, or
