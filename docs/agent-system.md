@@ -19,10 +19,12 @@ spend, or contact prospects without owner approval.
 
 ### Prospect Scout
 
-Finds legitimate small U.S. businesses using public sources, starting with
-contractors/home services, restaurants, salons/retail, and professional
-services. It records verifiable need signals and source URLs, deduplicates
-results, and never gathers private personal data.
+Finds legitimate small businesses anywhere in the United States using public
+sources, starting with contractors/home services, restaurants, salons/retail,
+and professional services. It rotates among regions and states, records
+verifiable need signals and source URLs, prioritizes verified public business
+emails or working contact forms, deduplicates results, and never gathers private
+personal data.
 
 ### Lead Qualifier
 
@@ -58,6 +60,27 @@ Reads the SiteSync GA4 property, Netlify production state, GitHub repository,
 and Supabase funnel counts. It reports actionable traffic or conversion changes
 and alerts on deployment, form, or data-pipeline failures. It does not change
 production, campaigns, or budgets.
+
+## Nationwide prospecting standard
+
+SiteSync can deliver website and platform work remotely, so outbound
+prospecting is nationwide and has no local-market preference.
+
+- Rotate among U.S. regions and states instead of repeatedly using one local
+  directory.
+- When five qualified prospects are available, aim for at least three states
+  and no more than two prospects from one state.
+- Prefer verified public business email addresses or working website contact
+  forms. A public business phone is secondary.
+- In a full batch of five, aim for at least three prospects with a verified
+  business email or working contact form.
+- Open and verify the original source and the business website when one exists;
+  never rely only on search snippets.
+- Do not add weak prospects to fill a quota.
+- Never guess or enrich contact information, access data brokers, or collect
+  private personal data.
+- Existing legitimate local prospects remain valid; the nationwide rule governs
+  new prospect discovery.
 
 ## Outreach email standard
 
