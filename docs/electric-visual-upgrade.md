@@ -1,27 +1,23 @@
 # SiteSync Electric visual upgrade
 
-Adds a lightweight electric-green circuit field, animated data packets and orbital details to the existing platform illustration, aurora/grid depth, refined cards and calls to action, and an accessible motion control. No paid service, dependency, new business claim, analytics request, or backend change is introduced.
+Adds an electric-green circuit background, animated data packets and orbital details to the existing platform illustration, aurora/grid depth, refined cards and calls to action, and an accessible motion control. No new package dependency, paid service, business claim, analytics request, or application backend change is introduced.
 
 ## Integration
 
-`npm run build` copies the existing public site, then `scripts/visual-layer.mjs` adds the versioned local stylesheet, deferred script, and decorative background to `dist/index.html` only. The original homepage content, demos, pricing, form fields, form handlers, private inbox, and server functions are not replaced. The helper is idempotent and preserves body attributes. The existing inbox bundling step is unchanged.
-
-For a production-equivalent local preview, run `npm ci && npm run build` and serve `dist` with a static server. The legacy `npm run dev` and `build:sites` paths do not apply this Netlify-only enhancement. If switching to those deployment paths, add the same enhancement deliberately rather than assuming it is present.
+The Netlify build copies the public site, then `scripts/visual-layer.mjs` adds versioned local CSS, deferred JavaScript, and the decorative background to `dist/index.html` only. Existing homepage content, pricing, demos, consultation handlers, inbox assets, and all three server functions remain in the full application. The helper is idempotent and preserves body attributes. Legacy `npm run dev` and `build:sites` do not apply this Netlify-specific enhancement.
 
 ## Motion and resilience
 
-The canvas renderer caps its resolution scale at 1.5 and targets at most 30 frames per second, with five circuit routes on mobile and eleven on desktop. It cancels rendering while the document is hidden or motion is paused. The motion preference is optional local storage; blocked storage or an unavailable canvas must not break the page. Device reduced-motion preferences take priority. All added background/diagram elements are decorative, unfocusable, and non-interactive; the motion toggle is a keyboard-accessible button. The existing site's decorative CSS pauses with the same control. Forced colors and printing have fallbacks.
+The canvas caps its resolution scale at 1.5 and draws at most 30 times per second, with five circuit routes on mobile and eleven on desktop. It stops drawing while the document is hidden or motion is paused. Optional local storage remembers the motion preference; storage and canvas failures have fallbacks. Device reduced-motion preferences take priority. Added background and SVG content is decorative and noninteractive. The keyboard-accessible motion toggle also pauses the site's existing decorative CSS. Forced colors and printing have fallbacks.
 
-## Checks performed
+## Verification gate
 
-- `node --check public/electric.js`: passed.
-- `node --test tests/electric.test.mjs`: all eight tests passed.
-- New stylesheet parsed without syntax errors.
-- Offline Chromium checks passed on a representative homepage fixture using the new production assets: animation, pause/resume, storage-backed preference (storage stub), keyboard toggle, document-hidden simulation, reduced motion, disabled canvas, blocked storage, readable no-JavaScript fallback, and an editable input.
-- No horizontal overflow in that fixture at 320, 375, 390, 768, 1024, or 1440 pixels. Desktop and mobile screenshots were inspected.
+`netlify.toml` runs `npm test` before publication. This command builds the complete application and runs the existing consultation, inbox, and lead-digest tests plus eight visual-layer tests. A failing build or test must prevent publication.
 
-## Release status
+The visual-layer tests cover asset insertion, idempotence, preservation of form/inbox/pricing markup, decorative accessibility markup, invalid input, scoped file writes, absence of network requests from the visual script, and CSS fallback rules. These automated checks are not equivalent to a full browser or email-delivery audit. Do not claim browser testing or production verification without corresponding results.
 
-These are scoped visual-layer checks, not a full end-to-end production audit. The complete `npm ci` / Vite build and existing backend test suite were not run in the editing environment because remote dependency retrieval was unavailable. Run `npm test` with dependencies installed before publication, then verify the real homepage's demos, mobile menu, consultation flow, and private inbox.
+## Deployment
 
-The inspected production Netlify site used an API-uploaded deployment rather than a Git-linked commit. A repository change alone therefore does not establish that the new design is live. Keep this upgrade in the review workflow and deploy the complete built application, including the existing three functions, through the authorized release process. Do not upload this frontend patch alone as a replacement for the production deployment.
+Production is the existing `sitesync-managed` Netlify project at `sitesync.us.com`. Its release path is a full source upload and remote build; committing or merging code alone does not publish it. A release must retain all static assets, headers, redirects, environment settings, and the consultation, inbox, and lead-digest functions. Never replace production with a frontend-only ZIP.
+
+Record the source commit, deployed ID, successful build/test result, and actual HTTP verification in the release pull request. Verify the new homepage assets and protected inbox route after publication. Do not submit fake customer leads or trigger the scheduled email digest merely to test this visual upgrade.
