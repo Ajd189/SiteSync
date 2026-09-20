@@ -1,0 +1,179 @@
+/* SiteSync / Electric — a progressive, dependency-free visual layer. */
+body[data-sitesync-electric] {
+  --green: #a3ff59;
+  --aqua: #50edb9;
+  --line-green: rgba(163, 255, 89, .32);
+  background: #040907;
+}
+body[data-sitesync-electric]::before,
+body[data-sitesync-electric] .hero::before { display: none; }
+.ss-atmosphere {
+  position: fixed; inset: 0; z-index: -1; overflow: hidden;
+  pointer-events: none; contain: strict;
+  background: radial-gradient(ellipse at 82% 22%, #14381d80, transparent 54%), #040907;
+}
+.ss-aurora {
+  position: absolute; inset: -15%; opacity: .62;
+  background: radial-gradient(ellipse at 76% 30%, #72ff3427, transparent 36%),
+    radial-gradient(ellipse at 25% 80%, #1de2b013, transparent 35%);
+  animation: ss-aurora-drift 22s ease-in-out infinite alternate;
+}
+.ss-grid {
+  position: absolute; inset: 0; opacity: .28;
+  background-image: linear-gradient(#8bff5a13 1px, transparent 1px),
+    linear-gradient(90deg, #8bff5a13 1px, transparent 1px);
+  background-size: 76px 76px;
+  -webkit-mask-image: radial-gradient(ellipse at 70% 35%, #000, transparent 82%);
+  mask-image: radial-gradient(ellipse at 70% 35%, #000, transparent 82%);
+}
+#ss-circuit-field { display: block; width: 100%; height: 100%; opacity: .8; }
+body[data-sitesync-electric] .site-header {
+  background: #040907eb; border-bottom-color: #a3ff591b;
+  box-shadow: 0 1px 0 #a3ff5905, 0 16px 60px #0003;
+}
+body[data-sitesync-electric] .hero { padding-block: clamp(4rem, 7vw, 7rem); }
+body[data-sitesync-electric] .hero h1 {
+  font-size: clamp(3.6rem, 6.1vw, 6rem); letter-spacing: -.065em;
+}
+body[data-sitesync-electric] .hero h1 em {
+  background-image: linear-gradient(110deg, #b9ff80 8%, #f0ffe5 36%, #65f5bb 59%, #a3ff59 86%);
+  background-size: 250% auto; animation: ss-title-flow 12s linear infinite;
+  filter: drop-shadow(0 0 24px #95ff371a);
+}
+body[data-sitesync-electric] .hero .eyebrow {
+  padding: .45rem .8rem .45rem .45rem; border: 1px solid #a3ff592b;
+  border-radius: 8px; background: #a3ff5908; letter-spacing: .1em;
+}
+body[data-sitesync-electric] .hero-lede { color: #c0cec5; }
+body[data-sitesync-electric] .hero-copy { position: relative; z-index: 2; }
+body[data-sitesync-electric] .button-primary {
+  background: linear-gradient(115deg, #b6ff7c, #94f64f);
+  border-color: #c2ff9166;
+  box-shadow: 0 0 0 1px #a3ff5910, 0 8px 36px #7dfa3020, inset 0 1px #ecffd8aa;
+}
+body[data-sitesync-electric] .button-primary:hover {
+  box-shadow: 0 0 0 4px #a3ff5910, 0 12px 46px #8dff3f38;
+}
+body[data-sitesync-electric] .button-quiet { background: #09110dde; border-color: #b1e7be30; }
+body[data-sitesync-electric] .network-card {
+  border-color: #a3ff5960;
+  background: radial-gradient(ellipse at 50% 47%, #264c2838, transparent 67%),
+    linear-gradient(150deg, #112119f5, #060e0afc 72%);
+  box-shadow: 0 40px 100px #0008, 0 0 80px #8dff3f0d, inset 0 1px #daffca33;
+}
+body[data-sitesync-electric] .network-card::before {
+  background-size: 28px 28px; opacity: .55; pointer-events: none;
+}
+body[data-sitesync-electric] .network-card::after { animation: none; display: none; }
+body[data-sitesync-electric] .network-topbar { background: #a3ff5904; border-bottom-color: #a3ff5924; }
+body[data-sitesync-electric] .network-footer {
+  flex-wrap: wrap; gap: .6rem 1.1rem; padding: .85rem 1rem; background: #02090680;
+}
+body[data-sitesync-electric] .network-stage { isolation: isolate; }
+.ss-orbits { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; overflow: visible; }
+.ss-orbits circle { fill: none; stroke: #a3ff5929; stroke-width: .7; }
+.ss-orbits .ss-orbit-ticks {
+  stroke: #a3ff5966; stroke-width: 3; stroke-dasharray: 1 16;
+  transform-origin: 300px 230px; animation: ss-orbit-turn 90s linear infinite;
+}
+.ss-orbits .ss-orbit-inner { stroke: #a3ff5938; stroke-dasharray: 54 85; stroke-width: 1; }
+body[data-sitesync-electric] .connection-lines:not(.ss-data-packets) path {
+  stroke: #a3ff5940; stroke-width: 1.1; stroke-dasharray: none; filter: none; animation: none;
+}
+body[data-sitesync-electric] .ss-data-packets { pointer-events: none; }
+body[data-sitesync-electric] .ss-data-packets path {
+  stroke: #c3ff92; stroke-width: 2.4; stroke-linecap: round;
+  stroke-dasharray: 3 97; filter: drop-shadow(0 0 3px #a3ff5990);
+  animation: ss-packet-flow 4.8s linear infinite;
+}
+body[data-sitesync-electric] .platform-node {
+  background: linear-gradient(145deg, #182b20f5, #09140efc);
+  border-color: #a6e0ac40; box-shadow: 0 10px 28px #0007, inset 0 1px #dbffd210;
+  animation: none;
+}
+body[data-sitesync-electric] .node-center {
+  border-color: #b9ff80a0; background: linear-gradient(145deg, #23412a, #102018);
+  box-shadow: 0 0 0 7px #9aff4108, 0 0 0 16px #9aff4104, 0 0 42px #a3ff5922;
+}
+body[data-sitesync-electric] .node-center .node-icon {
+  background: linear-gradient(135deg, #d1ffaa, #8ef74c); box-shadow: 0 0 24px #a3ff5944;
+}
+.ss-motion-toggle {
+  appearance: none; display: inline-flex; align-items: center; justify-content: center;
+  gap: .4rem; min-height: 44px; padding: .4rem .7rem; border: 1px solid #a3ff5933;
+  border-radius: 7px; background: #a3ff5907; color: #c9e9ba;
+  font: 600 .72rem/1.2 var(--font-body, Arial, sans-serif); letter-spacing: .015em;
+}
+.ss-motion-toggle:hover { background: #a3ff5912; border-color: #a3ff5980; }
+.ss-motion-toggle:disabled { cursor: default; color: #a3b9a9; }
+.ss-motion-toggle:focus-visible { outline: 2px solid #b9ff80; outline-offset: 4px; }
+.ss-motion-icon { font-size: .82rem; }
+body[data-sitesync-electric] :is(.service-card, .price-card, .platform-chip, .builder-form, .builder-result, .deliverables-card, .audit-card, .faq-grid details) {
+  background-color: #0a140f; border-color: #b6e6c421;
+}
+body[data-sitesync-electric] :is(.service-card, .price-card, .platform-chip, .demo-lab, .concept-stage) {
+  will-change: auto;
+}
+body[data-sitesync-electric] :is(.service-card, .price-card, .platform-chip):hover {
+  border-color: #a3ff5970;
+  box-shadow: 0 25px 60px #0006, 0 0 0 1px #a3ff5909, 0 0 36px #a3ff590d;
+}
+body[data-sitesync-electric] .service-icon {
+  background: linear-gradient(145deg, #a3ff5918, #a3ff5904);
+  border-color: #a3ff5944; box-shadow: inset 0 1px #deffc114;
+}
+body[data-sitesync-electric] .service-number { color: #add898; }
+body[data-sitesync-electric] .section-kicker { display: inline-flex; align-items: center; gap: .65rem; }
+body[data-sitesync-electric] .section-kicker::before {
+  content: ''; width: 20px; height: 1px; background: #b9ff80; box-shadow: 0 0 8px #b9ff8044;
+}
+body[data-sitesync-electric] :is(.demo-lab, .concept-stage, .comparison-wrap) {
+  border-color: #a3ff593d; box-shadow: 0 24px 64px #0005, inset 0 1px #e0ffcb13;
+}
+body[data-sitesync-electric] .signal-bar {
+  border-color: #a3ff5933; background: linear-gradient(90deg, #07100beb, #162d17e8, #07100beb);
+}
+body[data-sitesync-electric] :is(.platforms-section, .checker-section, .builder-section, .proof-section) {
+  background: linear-gradient(145deg, #08130deb, #070e0bf5); border-color: #a3ff5921;
+}
+body[data-sitesync-electric] .concepts-section { background: #050c08eb; }
+body[data-sitesync-electric] .final-cta {
+  border-color: #a3ff5955; background: radial-gradient(ellipse at 80% 15%, #a3ff591f, transparent 60%), #0c1b11;
+  box-shadow: 0 0 80px #a3ff5909, inset 0 1px #dcffbd22;
+}
+@keyframes ss-aurora-drift { from { transform: translate3d(-2%, 1%, 0); } to { transform: translate3d(3%, -2%, 0); } }
+@keyframes ss-title-flow { to { background-position: -250% center; } }
+@keyframes ss-orbit-turn { to { transform: rotate(360deg); } }
+@keyframes ss-packet-flow { from { stroke-dashoffset: 100; } to { stroke-dashoffset: 0; } }
+/* Pausing is persistent and covers the site's pre-existing decorative CSS, too. */
+html[data-ss-motion='off'] body[data-sitesync-electric] *,
+html[data-ss-motion='off'] body[data-sitesync-electric] *::before,
+html[data-ss-motion='off'] body[data-sitesync-electric] *::after,
+html[data-ss-hidden] body[data-sitesync-electric] *,
+html[data-ss-hidden] body[data-sitesync-electric] *::before,
+html[data-ss-hidden] body[data-sitesync-electric] *::after { animation-play-state: paused !important; }
+html[data-ss-motion='off'] body[data-sitesync-electric] :is(.network-card, .service-card, .price-card, .platform-chip, .demo-lab, .concept-stage) {
+  transform: none !important; transition: none !important;
+}
+@media (max-width: 760px) {
+  .ss-atmosphere { background: radial-gradient(ellipse at 90% 22%, #17391a66, transparent 62%), #040907; }
+  .ss-grid { background-size: 56px 56px; opacity: .18; }
+  #ss-circuit-field { opacity: .52; }
+  body[data-sitesync-electric] .hero { padding-block: 3.4rem 3rem; }
+  body[data-sitesync-electric] .hero h1 { font-size: clamp(3.25rem, 12vw, 5.3rem); }
+  body[data-sitesync-electric] .hero .eyebrow { font-size: .7rem; letter-spacing: .07em; }
+  body[data-sitesync-electric] .network-card { box-shadow: 0 22px 56px #0006, 0 0 36px #8dff3f09; }
+  .ss-motion-toggle { min-height: 44px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ss-aurora, .ss-orbits, .ss-data-packets { display: none; }
+  body[data-sitesync-electric] .hero h1 em { animation: none; }
+}
+@media (forced-colors: active) {
+  .ss-atmosphere, .ss-orbits, .ss-data-packets { display: none; }
+  body[data-sitesync-electric] .hero h1 em { color: CanvasText; background: none; filter: none; }
+  body[data-sitesync-electric] .button-primary { border: 1px solid ButtonText; }
+}
+@media print {
+  .ss-atmosphere, .ss-motion-toggle, .ss-orbits, .ss-data-packets { display: none !important; }
+}
