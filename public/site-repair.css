@@ -1,17 +1,7 @@
-/* Small-screen layout repair; never hide or clip overflowing page content. */
+/* The sample-report grid must shrink below its cards' intrinsic width. */
 @media (max-width: 380px) {
-  .nav-shell { gap: .5rem; }
-  .site-header .brand { min-width: 0; flex-shrink: 1; }
-  .site-header .brand > span { min-width: 0; }
-  .site-header .brand small { font-size: .65rem; letter-spacing: .015em; }
-  .menu-button { flex: 0 0 44px; }
-  .footer-grid { grid-template-columns: minmax(0, 1fr); gap: 1rem; }
-  .footer-grid p { grid-row: auto; grid-column: 1; }
-  .site-footer > div > a:last-child { justify-self: start; }
-  .network-topbar { flex-wrap: wrap; gap: .5rem; }
-  .builder-result-top { flex-wrap: wrap; }
-  .sample-nav { flex-wrap: wrap; gap: .5rem; }
-  .price-top { flex-wrap: wrap; row-gap: .6rem; }
-  .package-badge { white-space: normal; max-width: 100%; }
-  .package-facts > div { min-width: 0; flex-wrap: wrap; }
+  .proof-grid { grid-template-columns: minmax(0, 1fr); }
+  .deliverables-card, .audit-card { min-width: 0; }
+  .audit-top { flex-wrap: wrap; gap: .75rem; }
+  .audit-top > div { min-width: 0; }
 }
