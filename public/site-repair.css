@@ -1,0 +1,7 @@
+/* The sample-report grid must shrink below its cards' intrinsic width. */
+@media (max-width: 380px) {
+  .proof-grid { grid-template-columns: minmax(0, 1fr); }
+  .deliverables-card, .audit-card { min-width: 0; }
+  .audit-top { flex-wrap: wrap; gap: .75rem; }
+  .audit-top > div { min-width: 0; }
+}

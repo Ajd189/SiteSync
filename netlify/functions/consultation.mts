@@ -26,22 +26,27 @@ export default async (request: Request, _context: Context) => {
     return json(503, { ok: false, error: 'Consultation delivery is temporarily unavailable.' }, { 'X-SiteSync-Error': `configuration:${missing}` });
   }
 
-  const response = await fetch(`${projectUrl}/rest/v1/consultation_requests`, {
-    method: 'POST',
-    headers: {
-      apikey: publishableKey,
-      Authorization: `Bearer ${publishableKey}`,
-      'x-sitesync-form-key': formKey,
-      'Content-Type': 'application/json',
-      Prefer: 'return=minimal'
-    },
-    body: JSON.stringify({ ...lead, source: 'sitesync.us.com', user_agent: request.headers.get('user-agent')?.slice(0, 500) || null })
-  });
-  if (!response.ok) {
-    console.error('consultation_storage_failed', response.status);
-    return json(503, { ok: false, error: 'Consultation delivery is temporarily unavailable.' }, { 'X-SiteSync-Error': 'storage' });
+  try {
+    const response = await fetch(`${projectUrl.replace(/\/$/, '')}/rest/v1/consultation_requests`, {
+      method: 'POST',
+      headers: {
+        apikey: publishableKey,
+        // Publishable keys identify the application; they are not user JWTs.
+        'x-sitesync-form-key': formKey,
+        'Content-Type': 'application/json',
+        Prefer: 'return=minimal'
+      },
+      signal: AbortSignal.timeout(15000),
+      body: JSON.stringify({ ...lead, source: 'sitesync.us.com', user_agent: request.headers.get('user-agent')?.slice(0, 500) || null })
+    });
+    if (!response.ok) {
+      console.error('consultation_storage_failed', response.status);
+      return json(503, { ok: false, error: 'Consultation delivery is temporarily unavailable.' }, { 'X-SiteSync-Error': 'storage' });
+    }
+    return json(200, { ok: true });
+  } catch {
+    console.error('consultation_storage_unavailable');
+    return json(503, { ok: false, error: 'Consultation delivery is temporarily unavailable.' }, { 'X-SiteSync-Error': 'storage-connection' });
   }
-  return json(200, { ok: true });
 };
-
 export const config: Config = { path: '/api/consultation' };

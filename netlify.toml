@@ -24,8 +24,15 @@
 
 [[redirects]]
   from = "/inbox"
-  to = "/inbox.html"
-  status = 200
+  to = "https://mail.google.com/mail/#inbox"
+  status = 302
+  force = true
+
+[[redirects]]
+  from = "/inbox.html"
+  to = "https://mail.google.com/mail/#inbox"
+  status = 302
+  force = true
 
 [[headers]]
   for = "/*"
