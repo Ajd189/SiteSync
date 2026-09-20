@@ -14,7 +14,7 @@ Netlify environment changes require a new deployment to affect functions. A pass
 
 ## Layout and preservation
 
-The small-screen stylesheet reflows navigation, footer, and package headers at 380px and below instead of hiding document overflow. Pricing, support periods, electric visuals, customer form schema and validation, and removal of contract-only website wording are preserved.
+A targeted browser diagnostic identified the sample-report cards' intrinsic minimum width as the narrow-screen overflow source. The small-screen stylesheet allows the proof grid and its cards to shrink, and lets the sample audit heading wrap at 380px and below. It does not hide overflow or change navigation, footer, page copy, pricing, support periods, or electric visuals. Contract-only ownership wording remains absent.
 
 The isolated browser audit uses puppeteer-core 24.15.0 and @sparticuz/chromium 138.0.2, which provide the CommonJS exports expected by scripts/audit-email-repair.cjs. These are temporary audit dependencies, not application dependencies. Record the actual audit report, including any failures. Do not infer completion from this document.
 
