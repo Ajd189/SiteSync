@@ -5,14 +5,13 @@
   "type": "module",
   "scripts": {
     "sync:support": "node scripts/support-policy.mjs",
-    "sync:marketing": "npm run sync:support && node scripts/ownership-policy.mjs",
-    "predev": "npm run sync:marketing",
+    "predev": "npm run sync:support",
     "dev": "vite",
-    "prebuild": "npm run sync:marketing",
+    "prebuild": "npm run sync:support",
     "build": "node scripts/build-netlify.mjs",
-    "prebuild:sites": "npm run sync:marketing",
+    "prebuild:sites": "npm run sync:support",
     "build:sites": "node scripts/build.mjs",
-    "test": "npm run build && node --test tests/netlify-consultation.test.mjs tests/netlify-inbox.test.mjs tests/netlify-lead-digest.test.mjs tests/electric.test.mjs tests/support-policy.test.mjs tests/ownership-policy.test.mjs",
+    "test": "npm run build && node --test tests/netlify-consultation.test.mjs tests/netlify-inbox.test.mjs tests/netlify-lead-digest.test.mjs tests/electric.test.mjs tests/support-policy.test.mjs",
     "check": "npm test"
   },
   "devDependencies": {
